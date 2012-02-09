@@ -26,15 +26,18 @@ module Prickle
       end
 
       private
-      def find_element_by_name_and_text element_type, name, text
-        element = Prickle::TAGS[element_type.to_sym] || element_type.to_s
+      def find_by_name_and_text_xpath element, name, text
+        "//#{type_for(element)}[@name='#{name}' and contains(text(), '#{text}')]"
+      end
 
+      def find_element_by_name_and_text element, name, text
         wait_until(Prickle::Capybara.wait_time) do
-          find(:xpath, "//#{element}[@name='#{name}' and contains(text(), '#{text}')]").visible?
+          find(:xpath, find_by_name_and_text_xpath(element, name, text)).visible?
         end unless Prickle::Capybara.wait_time.nil?
 
-        find(:xpath, "//#{element}[@name='#{name}' and contains(text(), '#{text}')]")
+        find(:xpath, find_by_name_and_text_xpath(element, name, text))
       end
     end
+
   end
 end

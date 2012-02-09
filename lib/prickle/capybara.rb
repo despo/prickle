@@ -17,5 +17,9 @@ module Prickle
 
     end
 
+    def type_for element
+      Prickle::TAGS[element.to_sym] || element
+    end
+
   end
 end

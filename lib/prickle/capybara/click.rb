@@ -9,7 +9,7 @@ module Prickle
       def method_missing method, *args
         if method =~ /^click_(.*)_by_name$/
           element = Prickle::TAGS[$1.to_sym] || $1
-          find(:xpath, "//#{element}[@name='#{args.first}']").click
+          find_by_name(element, args.first).click
         else
           super
         end

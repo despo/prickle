@@ -89,7 +89,7 @@ describe Prickle::Capybara do
 
     context "matching text" do
       it 'can wait for an element to appear' do
-        Prickle::Capybara.wait_time = 5
+        Prickle::Capybara.wait_time = 6
         prickly.element('lagged').contains_text? "I lag"
       end
 
@@ -103,6 +103,18 @@ describe Prickle::Capybara do
       it 'can wait for an element to appear' do
         Prickle::Capybara.wait_time = 5
         prickly.find_by_name('lagged')
+      end
+    end
+
+    context "clicking elements" do
+      it 'fails to click an element that has not appeared yet' do
+        Prickle::Capybara.wait_time = 1
+        expect { prickly.click_by_name('lagged') }.to raise_error Capybara::TimeoutError
+      end
+
+      it 'can click an element after it appears' do
+        Prickle::Capybara.wait_time = 6
+        prickly.click_by_name('lagged')
       end
     end
   end

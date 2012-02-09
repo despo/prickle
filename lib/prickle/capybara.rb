@@ -17,16 +17,13 @@ module Prickle
 
     end
 
-    def type_of element
-      Prickle::TAGS[element.to_sym] || element
-    end
-
     def element type='*', identifier
       @identifier = identifier
       @type = type
       self
     end
 
+    private
     def matcher identifier
       matcher = []
       return identifier.each_pair.map do |key, value|
@@ -35,7 +32,6 @@ module Prickle
       end.join ''
     end
 
-    private
     def find_element_by xpath
       wait_until(Prickle::Capybara.wait_time) do
         find(:xpath, xpath).visible?
@@ -43,5 +39,10 @@ module Prickle
 
       find(:xpath, xpath)
     end
+
+    def type_of element
+      Prickle::TAGS[element.to_sym] || element
+    end
+
   end
 end

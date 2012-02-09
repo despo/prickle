@@ -26,5 +26,11 @@ describe Prickle::Capybara do
         expect { prickly.find_a_by_name('pink') }.to raise_error
       end
     end
+
+    it 'can find a link' do
+        prickly.find_link_by_name 'red-dots'
+    end
+  end
+
   end
 end

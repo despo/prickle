@@ -5,7 +5,7 @@ require_relative 'capybara/match'
 module Prickle
   TAGS = { :link => 'a',
            :paragraph => 'p'
-         }
+  }
 
   module Capybara
     include Prickle::Actions::Find
@@ -19,6 +19,12 @@ module Prickle
 
     def type_for element
       Prickle::TAGS[element.to_sym] || element
+    end
+
+    def element type='*', name
+      @name = name
+      @type = type
+      self
     end
 
     private

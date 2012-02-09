@@ -2,12 +2,6 @@ module Prickle
   module Actions
     module Match
 
-      def element type='*', name
-        @name = name
-        @type = type
-        self
-      end
-
       def contains_text? text
         find_element_by_name_and_text(@type, @name,text)
       end

@@ -6,6 +6,10 @@ module Prickle
         find(:xpath, "//*[@name='#{name}']")
       end
 
+      def element_contains_text? name, text
+        find(:xpath, "//*[@name='#{name}' and contains(text(), '#{text}')]")
+      end
+
       def method_missing method, *args
         if method =~ /^find_(.*)_by_name$/
           element = Prickle::TAGS[$1.to_sym] || $1

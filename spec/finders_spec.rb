@@ -47,4 +47,15 @@ describe Prickle::Capybara do
       end
     end
   end
+
+  context 'matching text' do
+    it 'can match the text in any element' do
+      prickly.element_contains_text? "yellow",  "Hello!"
+    end
+
+    it "can fails if an elements doesn't have the specified content" do
+      expect { prickly.element_contains_text? "blue",  "Hello!" }.to raise_error
+    end
+
+  end
 end

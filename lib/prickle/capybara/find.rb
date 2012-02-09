@@ -20,11 +20,7 @@ module Prickle
       end
 
       def find_element_by_name element, name
-        wait_until(Prickle::Capybara.wait_time) do
-          find(:xpath, find_by_name_xpath(element, name)).visible?
-        end unless Prickle::Capybara.wait_time.nil?
-
-        find(:xpath, find_by_name_xpath(element, name))
+        find_element_by(find_by_name_xpath(element, name))
       end
 
     end

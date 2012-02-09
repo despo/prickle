@@ -21,5 +21,13 @@ module Prickle
       Prickle::TAGS[element.to_sym] || element
     end
 
+    private
+    def find_element_by xpath
+      wait_until(Prickle::Capybara.wait_time) do
+        find(:xpath, xpath).visible?
+      end unless Prickle::Capybara.wait_time.nil?
+
+      find(:xpath, xpath)
+    end
   end
 end

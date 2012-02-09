@@ -13,3 +13,4 @@ end
 require_relative 'stub/app'
 Capybara.app = Sinatra::Application
 Capybara.default_driver = :selenium
+#Capybara.ignore_hidden_elements = true

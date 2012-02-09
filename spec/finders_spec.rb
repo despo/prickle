@@ -79,4 +79,17 @@ describe Prickle::Capybara do
       prickly.element(:link, 'orangey').contains_text? "Me too!"
     end
   end
+
+  context 'Extended waits' do
+
+    it 'can wait for an element to appear' do
+      Prickle::Capybara.wait_time = 15
+      prickly.element('lagged').contains_text? "I lag"
+    end
+
+    it "can fail if an element doesn't appear after the default wait time", :wip => true do
+      Prickle::Capybara.wait_time = 5
+      expect { prickly.element('box').contains_text? "I am a box" }.to raise_error Capybara::TimeoutError
+    end
+  end
 end

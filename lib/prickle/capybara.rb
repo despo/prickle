@@ -12,5 +12,9 @@ module Prickle
     include Prickle::Actions::Click
     include Prickle::Actions::Match
 
+    class << self
+      attr_accessor :wait_time
+    end
+
   end
 end

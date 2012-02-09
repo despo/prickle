@@ -1,7 +1,35 @@
-<input name="red" type="button" />
-<input name="blue" type="button" />
-<button name="pink"></button>
-<a name="red-dots"></button>
-<p name="yellow">Hello!</p>
-<li name="purple">Im not purple!</li>
-<a name="orangey">Me too!!</a>
+<html>
+  <head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <input name="red" type="button" />
+    <input name="blue" type="button" />
+
+    <button name="pink"></button>
+    <a name="red-dots"></button>
+    <p name="yellow">Hello!</p>
+
+    <li name="purple">Im not purple!</li>
+    <a name="orangey">Me too!!</a>
+
+    <div name='lagged' class='hidden'> I lag</div>
+    <div name='box' class='box hidden'> I am a box</div>
+
+    <script>
+      $(document).ready(function() {
+        $('.hidden').hide();
+        setTimeout(showHidden, 15000);
+        setTimeout(showHiddenBox, 25000);
+      });
+
+      function showHidden() {
+        $('.hidden').show();
+      }
+      function showHiddenBox() {
+        $('.box').show();
+      }
+
+    </script>
+  </body>
+</html>

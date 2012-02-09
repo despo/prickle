@@ -9,6 +9,10 @@ module Prickle
       end
 
       def contains_text? text
+        wait_until(Prickle::Capybara.wait_time) do
+          find(:xpath, "//#{@type}[@name='#{@name}' and contains(text(), '#{text}')]").visible?
+        end unless @wait_time
+
         find(:xpath, "//#{@type}[@name='#{@name}' and contains(text(), '#{text}')]")
       end
 

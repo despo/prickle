@@ -53,12 +53,26 @@ describe Prickle::Capybara do
       prickly.element_contains_text? "yellow",  "Hello!"
     end
 
-    it "can fails if an elements doesn't have the specified content" do
+    it "fails if an elements doesn't have the specified content" do
       expect { prickly.element_contains_text? "blue",  "Hello!" }.to raise_error
     end
 
-    it 'finding text in a paragraph' do
+    it 'can find text in a paragraph' do
       prickly.paragraph_contains_text? "yellow", "Hello!"
+    end
+  end
+
+  context 'DSL' do
+    it 'can find an element' do
+      prickly.element('blue').should == prickly
+    end
+
+    it 'can match text in an element' do
+      prickly.element('yellow').contains_text? "Hello!"
+    end
+
+    it 'can match text in specific elements' do
+      prickly.element(:li, 'purple').contains_text? "Im not purple!"
     end
   end
 end

@@ -7,6 +7,7 @@ require 'prickle/capybara'
 
 class Prickly
   include Capybara::DSL
+
 end
 
 Capybara.app_host = "file:///#{File.dirname(__FILE__)}/stub.html"

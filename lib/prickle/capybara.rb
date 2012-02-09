@@ -1,5 +1,6 @@
 require_relative 'capybara/find'
 require_relative 'capybara/click'
+require_relative 'capybara/match'
 
 module Prickle
   TAGS = { :link => 'a',
@@ -9,6 +10,7 @@ module Prickle
   module Capybara
     include Prickle::Actions::Find
     include Prickle::Actions::Click
+    include Prickle::Actions::Match
 
   end
 end

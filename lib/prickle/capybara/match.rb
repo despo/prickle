@@ -4,7 +4,7 @@ module Prickle
 
       def element type=:*, name
         @name = name
-        @type = type.to_s
+        @type = Prickle::TAGS[type] || type.to_s
         self
       end
 

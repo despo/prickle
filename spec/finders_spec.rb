@@ -74,5 +74,9 @@ describe Prickle::Capybara do
     it 'can match text in specific elements' do
       prickly.element(:li, 'purple').contains_text? "Im not purple!"
     end
+
+    it 'can match on link type elements' do
+      prickly.element(:link, 'orangey').contains_text? "Me too!"
+    end
   end
 end

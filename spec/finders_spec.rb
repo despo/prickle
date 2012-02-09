@@ -28,7 +28,7 @@ describe Prickle::Capybara do
     end
 
     it 'can find a link' do
-        prickly.find_link_by_name 'red-dots'
+      prickly.find_link_by_name 'red-dots'
     end
   end
 

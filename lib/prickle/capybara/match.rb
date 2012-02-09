@@ -13,7 +13,8 @@ module Prickle
       end
 
       def element_contains_text? name, text
-        find(:xpath, "//*[@name='#{name}' and contains(text(), '#{text}')]")
+        @name = name; @type= '*'
+        contains_text? text
       end
 
       def method_missing method, *args
@@ -24,7 +25,6 @@ module Prickle
           super
         end
       end
-
     end
   end
 end

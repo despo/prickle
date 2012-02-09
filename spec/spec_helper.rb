@@ -10,5 +10,6 @@ class Prickly
 
 end
 
-Capybara.app_host = "file:///#{File.dirname(__FILE__)}/stub.html"
+require_relative 'stub/app'
+Capybara.app = Sinatra::Application
 Capybara.default_driver = :selenium

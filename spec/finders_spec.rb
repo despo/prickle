@@ -57,5 +57,8 @@ describe Prickle::Capybara do
       expect { prickly.element_contains_text? "blue",  "Hello!" }.to raise_error
     end
 
+    it 'finding text in a paragraph' do
+      prickly.paragraph_contains_text? "yellow", "Hello!"
+    end
   end
 end

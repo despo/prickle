@@ -2,7 +2,9 @@ require_relative 'capybara/find'
 require_relative 'capybara/click'
 
 module Prickle
-  TAGS = { :link => 'a' }
+  TAGS = { :link => 'a',
+           :paragraph => 'p'
+         }
 
   module Capybara
     include Prickle::Actions::Find

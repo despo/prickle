@@ -37,6 +37,10 @@ describe Prickle::Capybara do
       prickly.click_by_name 'blue'
     end
 
+    it 'can click any element by name and type' do
+      prickly.element(:input, :name => 'blue').click
+    end
+
     context 'can click by element type and name' do
       it 'can find a blue input type element' do
         prickly.click_input_by_name 'blue'
@@ -49,14 +53,6 @@ describe Prickle::Capybara do
   end
 
   context 'matching text' do
-    it 'can match the text in any element' do
-      prickly.element_contains_text? "yellow",  "Hello!"
-    end
-
-    it "fails if an elements doesn't have the specified content" do
-      expect { prickly.element_contains_text? "blue",  "Hello!" }.to raise_error
-    end
-
     it 'can find text in a paragraph' do
       prickly.paragraph_contains_text? "yellow", "Hello!"
     end
@@ -64,19 +60,23 @@ describe Prickle::Capybara do
 
   context 'DSL' do
     it 'can find an element' do
-      prickly.element('blue').should == prickly
+      prickly.element(:name => 'blue').should == prickly
     end
 
     it 'can match text in an element' do
-      prickly.element('yellow').contains_text? "Hello!"
+      prickly.element(:name => 'yellow').contains_text? "Hello!"
     end
 
     it 'can match text in specific elements' do
-      prickly.element(:li, 'purple').contains_text? "Im not purple!"
+      prickly.element(:li, :name => 'purple').contains_text? "Im not purple!"
     end
 
     it 'can match on link type elements' do
-      prickly.element(:link, 'orangey').contains_text? "Me too!"
+      prickly.element(:link, :name => 'orangey').contains_text? "Me too!"
+    end
+
+    it 'can click specific element types by name' do
+      prickly.element(:paragraph, :name => 'yellow').click
     end
   end
 
@@ -89,19 +89,19 @@ describe Prickle::Capybara do
 
     context "matching text" do
       it 'can wait for an element to appear' do
-        Prickle::Capybara.wait_time = 6
-        prickly.element('lagged').contains_text? "I lag"
+        Prickle::Capybara.wait_time = 4
+        prickly.element(:name => 'lagged').contains_text? "I lag"
       end
 
       it "can fail if an element doesn't appear after the default wait time" do
         Prickle::Capybara.wait_time = 2
-        expect { prickly.element('lagged').contains_text? "I lag" }.to raise_error Capybara::TimeoutError
+        expect { prickly.element(:name => 'lagged').contains_text? "I lag" }.to raise_error Capybara::TimeoutError
       end
     end
 
     context "finding elements" do
       it 'can wait for an element to appear' do
-        Prickle::Capybara.wait_time = 5
+        Prickle::Capybara.wait_time = 4
         prickly.find_by_name('lagged')
       end
     end
@@ -113,7 +113,7 @@ describe Prickle::Capybara do
       end
 
       it 'can click an element after it appears' do
-        Prickle::Capybara.wait_time = 6
+        Prickle::Capybara.wait_time = 4
         prickly.click_by_name('lagged')
       end
     end

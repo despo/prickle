@@ -17,14 +17,22 @@ module Prickle
 
     end
 
-    def type_for element
+    def type_of element
       Prickle::TAGS[element.to_sym] || element
     end
 
-    def element type='*', name
-      @name = name
+    def element type='*', identifier
+      @identifier = identifier
       @type = type
       self
+    end
+
+    def matcher identifier
+      matcher = []
+      return identifier.each_pair.map do |key, value|
+        matcher << "and " unless matcher.empty?
+        matcher << "@#{key}='#{value}'"
+      end.join ''
     end
 
     private

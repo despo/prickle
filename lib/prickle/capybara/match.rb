@@ -9,10 +9,6 @@ module Prickle
       end
 
       def contains_text? text
-        wait_until(Prickle::Capybara.wait_time) do
-          find_element_by_name_and_text(@type, @name,text).visible?
-        end unless Prickle::Capybara.wait_time.nil?
-
         find_element_by_name_and_text(@type, @name,text)
       end
 
@@ -32,6 +28,11 @@ module Prickle
       private
       def find_element_by_name_and_text element_type, name, text
         element = Prickle::TAGS[element_type.to_sym] || element_type.to_s
+
+        wait_until(Prickle::Capybara.wait_time) do
+          find(:xpath, "//#{element}[@name='#{name}' and contains(text(), '#{text}')]").visible?
+        end unless Prickle::Capybara.wait_time.nil?
+
         find(:xpath, "//#{element}[@name='#{name}' and contains(text(), '#{text}')]")
       end
     end

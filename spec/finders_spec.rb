@@ -82,9 +82,14 @@ describe Prickle::Capybara do
 
   context 'Extended waits' do
 
-    context "matching text" true do
+    before(:each) do
+      Prickle::Capybara.wait_time = nil
+      prickly.visit '/'
+    end
+
+    context "matching text" do
       it 'can wait for an element to appear' do
-        Prickle::Capybara.wait_time = 3
+        Prickle::Capybara.wait_time = 5
         prickly.element('lagged').contains_text? "I lag"
       end
 
@@ -95,6 +100,10 @@ describe Prickle::Capybara do
     end
 
     context "finding elements" do
+      it 'can wait for an element to appear' do
+        Prickle::Capybara.wait_time = 5
+        prickly.find_by_name('lagged')
+      end
     end
   end
 end

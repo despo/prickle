@@ -3,6 +3,10 @@ module Prickle
     module Find
 
       def find_by_name type='*', name
+        wait_until(Prickle::Capybara.wait_time) do
+          find(:xpath, "//#{type}[@name='#{name}']").visible?
+        end unless Prickle::Capybara.wait_time.nil?
+
         find(:xpath, "//#{type}[@name='#{name}']")
       end
 

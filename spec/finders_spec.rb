@@ -32,5 +32,19 @@ describe Prickle::Capybara do
     end
   end
 
+  context 'clicking on elements' do
+    it 'can click any element by name' do
+      prickly.click_by_name 'blue'
+    end
+
+    context 'can click by element type and name' do
+      it 'can find a blue input type element' do
+        prickly.click_input_by_name 'blue'
+      end
+
+      it "but it cannot find a blue link because it's not on the page" do
+        expect { prickly.click_link_by_name 'blue' }.to raise_error
+      end
+    end
   end
 end

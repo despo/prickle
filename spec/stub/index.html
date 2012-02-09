@@ -14,20 +14,15 @@
     <a name="orangey">Me too!!</a>
 
     <div name='lagged' class='hidden'> I lag</div>
-    <div name='box' class='box hidden'> I am a box</div>
 
     <script>
       $(document).ready(function() {
         $('.hidden').hide();
-        setTimeout(showHidden, 15000);
-        setTimeout(showHiddenBox, 25000);
+        setTimeout(showHidden, 3000);
       });
 
       function showHidden() {
         $('.hidden').show();
-      }
-      function showHiddenBox() {
-        $('.box').show();
       }
 
     </script>

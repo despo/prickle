@@ -14,6 +14,7 @@ module Prickle
 
     class << self
       attr_accessor :wait_time
+
     end
 
   end

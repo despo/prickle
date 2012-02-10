@@ -3,11 +3,8 @@ module Prickle
     module Match
 
       def contains_text? text
-        begin
+        handle_exception do
           find_element_by_name_and_text(@type, @identifier, text)
-        rescue Exception => e
-          raise Capybara::ElementNotFound.new(not_found_message(@type, @identifier, text)) if e.message.include? find_by_name_and_text_xpath(@type, @identifier, text)
-          raise
         end
       end
 
@@ -26,12 +23,11 @@ module Prickle
       end
 
       def find_element_by_name_and_text element, name, text
-        find_element_by(find_by_name_and_text_xpath(element, name, text))
+        handle_exception do
+          find_element_by(find_by_name_and_text_xpath(element, name, text))
+        end
       end
 
-      def not_found_message type, identifier, text
-        "Element #{type unless type == "*"}with properties \e[1m#{identifier.to_a}\e[0m\e[31m and text \e[1m#{text}\e[0m\e[31m was not be found."
-      end
     end
   end
 end

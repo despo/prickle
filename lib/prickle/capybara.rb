@@ -48,5 +48,13 @@ module Prickle
       Prickle::TAGS[element.to_sym] || element
     end
 
+    def handle_exception &block
+      begin
+        block.call
+      rescue Exception => e
+        raise Capybara::ElementNotFound.new(@type, @identifier, @text, e) if e.class.to_s == "Capybara::ElementNotFound"
+        raise
+      end
+    end
   end
 end

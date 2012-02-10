@@ -25,7 +25,10 @@ module Prickle
       end
 
       def find_element_by_identifier element, identifier
-        find_element_by(find_by_identifier_xpath(element, identifier ))
+        @type = element; @identifier = identifier
+        handle_exception do
+          find_element_by(find_by_identifier_xpath(element, identifier ))
+        end
       end
 
     end

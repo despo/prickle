@@ -19,7 +19,7 @@ module Prickle
       private
 
       def find_by_name_and_text_xpath element, identifier, text
-        "//#{type_of(element)}[#{matcher(identifier)} and contains(text(), '#{text}')]"
+        "//#{type_of(element)}[#{xpath_for(identifier)} and contains(text(), '#{text}')]"
       end
 
       def find_element_by_name_and_text element, name, text

@@ -21,7 +21,7 @@ module Prickle
       end
 
       def find_by_identifier_xpath element, identifier
-        "//#{type_of(element)}[#{matcher(identifier)}]"
+        "//#{type_of(element)}[#{xpath_for(identifier)}]"
       end
 
       def find_element_by_identifier element, identifier

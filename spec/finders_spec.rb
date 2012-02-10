@@ -86,6 +86,10 @@ describe Prickle::Capybara do
     it 'can find and click on element by type and identifier' do
       prickly.element(:link, :href => 'http://google.com').click
     end
+
+    it 'can find an element by multiple identifiers' do
+      prickly.element(:name => 'orangey', :class => 'pink').contains_text? "Blue hippos"
+    end
   end
 
   context 'Extended waits' do

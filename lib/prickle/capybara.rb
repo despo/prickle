@@ -28,10 +28,11 @@ module Prickle
 
     def matcher identifier
       matcher = []
-      return identifier.each_pair.map do |key, value|
-        matcher << "and " unless matcher.empty?
+      identifier.each_pair do |key, value|
+        matcher << " and " unless matcher.empty?
         matcher << "@#{key}='#{value}'"
-      end.join ''
+      end
+      matcher.join ''
     end
 
     def find_element_by xpath

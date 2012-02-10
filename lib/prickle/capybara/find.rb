@@ -10,6 +10,8 @@ module Prickle
         find_element_by_identifier @type, @identifier
       end
 
+      private
+
       def method_missing method, *args
         if method =~ /^find_(.*)_by_name$/
           find_by_name $1, args.first
@@ -17,8 +19,6 @@ module Prickle
           super
         end
       end
-
-      private
 
       def find_by_identifier_xpath element, identifier
         "//#{type_of(element)}[#{matcher(identifier)}]"

@@ -6,6 +6,10 @@ module Prickle
         find_element_by_identifier type, { :name => name }
       end
 
+      def exists?
+        find_element_by_identifier @type, @identifier
+      end
+
       def method_missing method, *args
         if method =~ /^find_(.*)_by_name$/
           find_by_name $1, args.first

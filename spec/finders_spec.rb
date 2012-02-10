@@ -78,6 +78,14 @@ describe Prickle::Capybara do
     it 'can click specific element types by name' do
       prickly.element(:paragraph, :name => 'yellow').click
     end
+
+    it 'can find an element by type and identifier' do
+      prickly.element(:paragraph, :id => 'coffee').exists?
+    end
+
+    it 'can find and click on element by type and identifier' do
+      prickly.element(:link, :href => 'http://google.com').click
+    end
   end
 
   context 'Extended waits' do

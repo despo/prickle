@@ -1,6 +1,7 @@
 require_relative 'capybara/find'
 require_relative 'capybara/click'
 require_relative 'capybara/match'
+require_relative 'capybara/exceptions'
 
 module Prickle
   TAGS = { :link => 'a',

@@ -11,10 +11,10 @@ module Prickle
       end
 
       private
+
       def method_missing method, *args
         if method =~ /^click_(.*)_by_name$/
-          element = Prickle::TAGS[$1.to_sym] || $1
-          find_by_name(element, args.first).click
+          find_by_name($1, args.first).click
         else
           super
         end

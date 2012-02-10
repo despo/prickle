@@ -8,14 +8,15 @@ module Prickle
   }
 
   module Capybara
-    include Prickle::Actions::Find
-    include Prickle::Actions::Click
-    include Prickle::Actions::Match
 
     class << self
       attr_accessor :wait_time
 
     end
+
+    include Prickle::Actions::Find
+    include Prickle::Actions::Click
+    include Prickle::Actions::Match
 
     def element type='*', identifier
       @identifier = identifier
@@ -24,6 +25,7 @@ module Prickle
     end
 
     private
+
     def matcher identifier
       matcher = []
       return identifier.each_pair.map do |key, value|
